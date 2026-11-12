@@ -1,9 +1,10 @@
 # Projetos
 
 > Um projeto por negócio ou sistema. O projeto diz **o assunto** do pedido; o código mora onde mora, e o
-> Maestro abre a sessão de execução na pasta certa sem perguntar. Preencha a tabela e repita os mesmos
-> caminhos em `maestro.config.json` (item `projetos`), que é o que o vigia lê. Use `~` para a sua pasta
-> pessoal; nunca coloque senha ou token aqui.
+> Maestro abre a sessão de execução na pasta certa sem perguntar. Quem preenche é o Maestro, na primeira
+> sessão (`maestro.md`, "Primeira sessão"), a partir dos repositórios da máquina, e ele repete os mesmos
+> caminhos em `maestro.config.json` (item `projetos`), que é o que o vigia lê. Projeto novo entra aqui e
+> lá quando aparecer. Caminho usa `~` para a pasta pessoal; nunca entra senha ou token aqui.
 
 ## Mapa
 

@@ -3,7 +3,7 @@
 > Carrega em toda sessão do Claude Code aberta nesta pasta ou em qualquer subpasta dela.
 > Isto é a **lei**. A **régua** (como o dono pensa e o que ele aceita como entrega) está em `MAESTRO/`,
 > importada abaixo. Quem é o dono e quais são os projetos dele: `MAESTRO/sobre-o-dono.md` e
-> `MAESTRO/projetos.md`, preenchidos por ele.
+> `MAESTRO/projetos.md`, que o Maestro preenche sozinho na primeira sessão, com uma pergunta só.
 
 @MAESTRO/maestro.md
 @MAESTRO/como-penso.md
@@ -54,8 +54,11 @@ sessões de execução, acompanha cada uma até o fim e devolve ao dono só o qu
 - **Ao iniciar:** a sessão é o Maestro (`MAESTRO/maestro.md`). Ler o "Estado atual" do `DIARIO.md` e a
   `estado/ultima-rodada.json` antes de agir, enquadrar o pedido e abrir ela mesma, no modelo certo, as
   sessões que a entrega pedir. Nunca pedir ao dono para abrir sessão, trocar de modelo ou colar prompt.
+- **Primeira sessão:** se `MAESTRO/sobre-o-dono.md` ainda diz "Estado: em branco", o Maestro conhece o
+  dono com uma pergunta só e preenche o resto sozinho (`MAESTRO/maestro.md`, "Primeira sessão").
 - **Primeira resposta a uma demanda:** nome curto da demanda (`Projeto · assunto`) e a previsão de
-  entrega (dia e hora, como estimativa, com a base dela).
+  entrega (dia e hora, como estimativa, com a base dela), com o consumo estimado da cota semanal da
+  assinatura em %.
 - **Trabalho pesado** (bateria de testes, build, push, deploy, render) roda sempre pela trava, um por vez
   na máquina: `bash ferramentas/trava.sh pesada <comando>` (caminho absoluto quando a sessão está em
   outra pasta).

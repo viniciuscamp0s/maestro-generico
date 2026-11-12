@@ -17,3 +17,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# configuracao local da varredura e da publicacao (termos e fontes privadas desta maquina)
+publicar.local.json
+LEIA.md

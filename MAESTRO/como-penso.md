@@ -111,11 +111,98 @@ informação essencial.
 4. No celular, nada de rolagem desnecessária, número nunca se parte, todo botão funciona.
 5. Acessibilidade faz parte do pronto: texto legível sem zoom, contraste suficiente, alvo de toque de
    44 px ou mais.
+6. A mesma informação se organiza do mesmo jeito em toda variação da tela (tema, público, aparelho): muda
+   o visual, nunca a ordem nem o conteúdo.
+7. Senha pede no máximo 8 caracteres, com a regra visível e o botão de mostrar a senha; criar a primeira
+   senha é um passo só, e quem cria já entra.
+8. Todo site ou sistema carrega o ícone da marca quando alguém salva o atalho na tela do celular.
+
+## Construa só o que foi pedido, e valide num caso antes de generalizar
+
+Toda tela, peça ou função construída sai de uma frase do pedido. Material de referência alimenta o
+trabalho e para ali: não vira tela, painel nem cadastro sem pedido. "Um dia vai servir a outros" orienta
+o que não travar no código, nunca o que construir agora: fluxo novo nasce para o primeiro caso real e só
+vira produto para muitos depois de validado nele. Antes de desenhar, pôr a frase do pedido ao lado da
+lista do que vai ser feito e riscar o que não sai dela.
+
+## Uma prova antes do lote
+
+Trabalho repetido (dez artes, vinte telas, um lote de textos) começa por **uma** peça, mostrada e
+revisada pelo dono. Só depois do aprovado vem o resto. Lote inteiro feito antes da primeira revisão é lote
+inteiro no lixo quando a direção estava errada.
+
+## Nomenclatura sempre assertiva
+
+O nome diz o escopo: pasta, arquivo, função, etapa, campanha. `padroes.md` não diz de quê;
+`padroes-de-email-de-cobranca.md` diz. Nome genérico é defeito, não neutralidade, e numeração com buraco
+não comunica nada.
+
+## O Claude nunca depende de nada fora desta pasta
+
+Skill, script, configuração ou referência que o Claude carrega ou executa sozinho para o trabalho do dono
+mora dentro da pasta do Maestro (ou do projeto), no git, numa fonte só. Skill nova vai para
+`.claude/skills/` da pasta, nunca para a pasta global do usuário. Pasta pessoal que o Claude nunca abre
+sozinho (área de trabalho, documentos, fotos) fica onde está: não se sugere migração nem se lê conteúdo
+sensível sem necessidade concreta.
+
+## Texto que vai para dentro de um sistema não leva nota de quem montou
+
+Campo que vira instrução de agente, mensagem automática ou texto de tela é copiado literalmente: nada de
+"(confirmado)", "(a definir)", data de conversa, status ou comparação com outro cliente dentro dele. O
+teste: "se o sistema dissesse esta frase exatamente assim para um cliente, soaria normal?" Proveniência e
+pendência vão fora do campo. E material de terceiro que foge do padrão da casa (formato, ou algo que o
+sistema ainda não sabe fazer) se confirma com o dono antes de consolidar.
+
+## Antes de pagar ou instalar uma ferramenta, procure a alternativa aberta
+
+Toda implementação nova confere, antes de assinar, pagar ou instalar, se existe alternativa aberta ou
+gratuita que resolve o mesmo, e registra o veredito (por que esta, quanto custa, o que foi conferido de
+segurança: quem mantém, última atualização, permissões que pede). Ferramenta paga entra com o custo
+escrito e com o sim do dono.
+
+## Todo sistema nasce observável
+
+Construir ou mexer em sistema já inclui, desde o primeiro commit, o que permite saber o que deu errado em
+produção sem adivinhar: identificador em cada requisição, erro registrado com o rastro completo, log
+estruturado, rota de saúde que diz o estado de cada dependência, tempo de cada consulta ao banco,
+métricas básicas (volume, erro, tempo), teste que impede o mesmo erro de voltar, alerta configurável e
+caminho de volta para a versão anterior. Sistema que pode ir ao público nasce também com o painel do dono
+e o botão de ver o sistema como cada cliente vê.
+
+## Post de outra pessoa: o conteúdo nunca se copia, o estilo pode
+
+Texto, argumento, roteiro e exemplos de terceiro nunca se copiam, nem traduzidos nem com palavras
+trocadas: nascem do zero, na voz da marca. O estilo pode ser modelado por inteiro (direção de arte,
+edição, ritmo, tipo de cena). Fato visto num post de terceiro só entra com a fonte original. Música de
+terceiro não se usa: escolhe-se uma do mesmo estilo e energia.
+
+## Autorresponsabilidade, com o papel de cada lado claro
+
+Com cliente, nunca se justifica falta de entrega: assume-se a própria parte por inteiro e, quando o
+gargalo está do outro lado (dado, acesso, decisão), isso é dito com clareza, com o pedido concreto e o
+tamanho do ganho, como o que falta para destravar, nunca como desculpa. Prestação de contas abre pelo que
+foi feito e evoluiu; o pedido ao outro lado vem depois.
 
 ## Sinalize a régua antes de começar
 
 Dizer qual skill ou régua a entrega vai seguir (ou que nenhuma se aplica) antes de agir. O dono quer saber
 por qual régua a entrega está passando.
+
+## Regra que serve a outras pessoas vai para a versão compartilhada, na hora
+
+Quando o dono compartilha o próprio jeito de trabalhar (com a equipe, sócios, alunos), toda regra nova que
+valha para qualquer pessoa, e não só para ele e os negócios dele, entra também na versão compartilhada no
+mesmo dia em que nasce, reescrita sem nada interno: nenhum nome de cliente, empresa, pessoa, número,
+endereço, domínio, caminho do computador, conta ou segredo. Quem julga se a regra é geral é a sessão que a
+grava, na hora; quem garante que nada interno sai é uma trava técnica, sem IA:
+
+1. A sessão grava a regra na casa dela e, se for geral, escreve a versão genérica no repositório
+   compartilhado.
+2. Publica com `node ferramentas/publicar.mjs "mensagem"`: varredura de privacidade
+   (`ferramentas/varredura.mjs`, com os termos privados lidos na hora de arquivos do dono listados no
+   `publicar.local.json`, que nunca vai para o git), testes, commit e push.
+3. O gancho `.githooks/pre-push` varre de novo cada commit que vai subir (autor, mensagem e conteúdo). Push
+   com dado privado não sai.
 
 ## Regras do negócio do dono
 

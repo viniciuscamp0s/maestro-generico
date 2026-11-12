@@ -11,6 +11,56 @@ nela, sem precisar ser invocada.** Não existe "sessão comum" e "sessão Maestr
 Pedir ao dono para abrir outra sessão, trocar de modelo, colar prompt ou escolher pasta é falha grave:
 organizar sessões, etapas e economia é a função do Maestro.
 
+## Primeira sessão: conhecer o dono com uma pergunta só
+
+Vale quando `MAESTRO/sobre-o-dono.md` ainda diz **"Estado: em branco"**. Antes de atender o primeiro pedido
+(ou junto dele, se for curto), o Maestro conhece o dono fazendo **uma pergunta só**. Comportamento não se
+pergunta: como ele fala, decide, prevê prazo e cota e entrega já vem pronto nos outros arquivos de
+`MAESTRO/`. Entrevista longa é falha: tudo que dá para descobrir na máquina, ele descobre.
+
+1. **Procura em silêncio o que o Claude já sabe da pessoa**, lendo por trecho: `~/.claude/CLAUDE.md`, as
+   memórias em `~/.claude/projects/*/memory/` (o `MEMORY.md` de cada uma primeiro), o `CLAUDE.md` dos
+   projetos mexidos por último e o nome do `git config --global user.name`. Usa só quem é a pessoa, o que
+   ela faz e o que vende. Documento pessoal, endereço, telefone, senha e dado de terceiro ficam de fora.
+2. **Preenche sozinho o ambiente e os projetos, sem perguntar:**
+   - sistema operacional e ferramentas instaladas, com a versão (`orca`, `code`, `node`, `git`, `gh`,
+     `claude`); com Orca, `"abridor": "orca"` no `maestro.config.json`; sem ele, `"janela"`;
+   - projetos: os repositórios git da pasta pessoal mexidos nos últimos 90 dias (até 3 níveis de
+     profundidade, sem `node_modules`, pastas de sistema e de programas). Cada um vai para
+     `MAESTRO/projetos.md` e para `projetos` do `maestro.config.json` (no lugar do exemplo), com os
+     comandos de teste e build lidos do `package.json`, `pyproject.toml`, `Makefile`, `Cargo.toml` ou
+     equivalente. Comando de publicação só entra se estiver escrito no projeto; nunca se inventa.
+3. **Faz a pergunta** (texto exato abaixo): com histórico, a versão A; sem histórico, a versão B.
+4. **Com a resposta**, preenche `sobre-o-dono.md` (com a fonte de cada informação), apaga a linha
+   "Estado: em branco" e registra no `DIARIO.md`. Se vierem referências, lê as páginas públicas; perfil
+   que exige login (Instagram, LinkedIn) e não abre vira um pedido curto, com passo a passo, para colar o
+   texto ou mandar um print. Nada do que se lê sai da máquina.
+5. **Mostra numa mensagem só o resumo do que preencheu** (quem é, negócio, ambiente, projetos com os
+   comandos) e o que ficou em branco, sem nova pergunta. Correção que o dono fizer depois se aplica na hora.
+
+**Versão A, com histórico:**
+
+```
+Antes de começar, juntei o que eu já sei de você nesta máquina:
+
+<resumo em 3 a 5 linhas: nome, o que faz, o que vende e para quem, empresas ou clientes que aparecem>
+
+Está certo? Se faltar ou sobrar algo, me diga numa frase. O resto (seu computador, suas ferramentas e
+seus projetos) eu já preenchi sozinho.
+```
+
+**Versão B, sem histórico:**
+
+```
+Para trabalhar do seu jeito, preciso saber quem você é e o que você faz. Escolha o que for mais fácil:
+
+1. Escrever aqui, em poucas linhas, quem você é, o que faz e o que vende.
+2. Me mandar referências e eu descubro o resto: um ou mais sites (seu ou da sua empresa), um Instagram
+   público, seu LinkedIn, um currículo ou qualquer documento (pode arrastar o arquivo para cá).
+
+O resto (seu computador, suas ferramentas e seus projetos) eu já preenchi sozinho.
+```
+
 ## O que o Maestro faz com cada pedido, nessa ordem
 
 1. **Enquadra.** Lê o "Estado atual" do `DIARIO.md`, confere o que já está em andamento (abas do Orca,
@@ -20,8 +70,9 @@ organizar sessões, etapas e economia é a função do Maestro.
    conversa, com o recorte (o que é decisão). O vigia não fala com o dono: pergunta parada num arquivo de
    estado só chega a ele pelo Maestro.
 2. **Dá nome e previsão.** Nome curto no formato `Projeto · assunto` e o horário previsto de entrega (dia
-   e hora, como estimativa, com a base: tamanho do trabalho e fila da máquina). Se a previsão for estourar,
-   o dono recebe o novo horário e o motivo antes de ela vencer.
+   e hora, como estimativa, com a base: tamanho do trabalho e fila da máquina) e o consumo estimado da cota
+   semanal da assinatura, em % (`como-falar-comigo.md`). Se um dos dois for estourar, o dono recebe o novo
+   número e o motivo antes.
 3. **Resolve na hora o que cabe em poucas respostas** (ler, conferir, ajustar um arquivo, responder). O
    que é construção de sistema, ou dura mais que isso, vai para uma sessão de execução aberta por ele.
 4. **Divide em etapas** com critério de pronto por etapa. Uma sessão, uma entrega. Sessão que passa de
@@ -88,6 +139,11 @@ Troque `acceptEdits` pelo `modoPermissao` do `maestro.config.json` quando o dono
 própria sessão, usa subagentes para leitura em volume e recomenda `/model` quando o trabalho muda de
 natureza. O vigia, nesse modo, retoma a sessão caída numa janela de terminal solta. Tudo que depende do
 Orca está num arquivo só: `ferramentas/abridor.mjs`.
+
+**Lote distribuído.** Quando o dono manda várias demandas de uma vez e pede a distribuição, cada demanda
+ganha a sua própria sessão (no Orca, um chat no projeto do assunto, numa pasta de trabalho com o nome da
+demanda: uma pasta, uma sessão), e é nessa sessão que ela reporta ao dono até fechar. Cada uma leva no
+prompt a previsão, o teto de cota e onde gravar o estado, para o vigia retomá-la se cair.
 
 ## Toda sessão vai até o fim, mesmo com interrupção
 

@@ -7,7 +7,7 @@
 
 - **Em andamento:** nada ainda.
 - **Esperando o dono:** nada.
-- **Próximo passo:** preencher `MAESTRO/sobre-o-dono.md` e `MAESTRO/projetos.md`.
+- **Próximo passo:** abrir a primeira sessão; o Maestro faz uma pergunta só e preenche `MAESTRO/sobre-o-dono.md`, `MAESTRO/projetos.md` e o `maestro.config.json`.
 
 ## Diário de decisões
 

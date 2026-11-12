@@ -19,12 +19,13 @@ parou.
 | `MAESTRO/como-falar-comigo.md` | Como o Maestro fala com você |
 | `MAESTRO/regua-de-qualidade.md` | O que reprova uma entrega |
 | `MAESTRO/formato-das-entregas.md` | Como cada tipo de entrega chega a você |
-| `MAESTRO/sobre-o-dono.md` | **Você preenche:** quem é, o negócio, como decide |
-| `MAESTRO/projetos.md` | **Você preenche:** seus projetos e onde mora o código de cada um |
+| `MAESTRO/sobre-o-dono.md` | Quem você é e o seu negócio: o Maestro preenche na primeira sessão, com uma pergunta só |
+| `MAESTRO/projetos.md` | Seus projetos, onde mora o código e os comandos de teste e build: o Maestro preenche sozinho |
 | `DIARIO.md` | Estado atual e diário de decisões |
 | `ferramentas/vigia.mjs` | O vigia (retoma sessões, fecha as abas do que terminou) |
 | `ferramentas/trava.sh` | Um trabalho pesado por vez na máquina (testes, build, publicação) |
 | `ferramentas/abridor.mjs` | O único arquivo que depende do Orca |
+| `ferramentas/publicar.mjs`, `ferramentas/varredura.mjs` | Publicar no GitHub sem vazar dado privado (varredura sem IA + gancho de push) |
 | `ferramentas/filas/`, `ferramentas/prompts/` | Filas de trabalho e prompts (com exemplos) |
 | `ferramentas/instalar/` | Instaladores do vigia: Windows (Agendador de Tarefas) e Mac (launchd) |
 
@@ -50,11 +51,7 @@ parou.
    cd Maestro
    ```
 
-4. **Preencha `MAESTRO/sobre-o-dono.md`** (quem você é, o negócio, como decide). Seja concreto: o Maestro
-   lê isso em toda sessão.
-5. **Preencha `MAESTRO/projetos.md`** com os seus projetos. O ideal é cada projeto ser uma subpasta da
-   pasta-mãe (exemplo: `Maestro/meu-saas`), cada um com o próprio git.
-6. **Instale o vigia.**
+4. **Instale o vigia.**
    - Windows (PowerShell, dentro da pasta do Maestro):
      ```
      powershell -NoProfile -ExecutionPolicy Bypass -File ferramentas\instalar\windows.ps1
@@ -64,17 +61,20 @@ parou.
      bash ferramentas/instalar/mac.sh
      ```
    O instalador cria o `maestro.config.json` a partir do exemplo, se ainda não existir.
-7. **Ajuste o `maestro.config.json`:** em `projetos`, um item por projeto, com `nome` (o mesmo de
-   `projetos.md`), `pasta` (onde mora o código; aceita `~/`) e `orcaProjeto` (o repositório que o Orca
-   conhece; normalmente a mesma pasta). Sem Orca, troque `"abridor": "orca"` por `"abridor": "janela"`.
-8. **Confira:**
+5. **Confira:**
    ```
    npm test
    node ferramentas/vigia.mjs --check
    ```
    O primeiro tem que terminar com `fail 0`. O segundo mostra o que o vigia faria agora, sem fazer nada.
-9. **Abra uma sessão do Claude Code na pasta do Maestro** (no Orca ou no VS Code) e peça qualquer coisa.
-   Ela já nasce como Maestro.
+6. **Abra uma sessão do Claude Code na pasta do Maestro** (no Orca ou no VS Code) e peça qualquer coisa.
+   Ela já nasce como Maestro. Na primeira vez ele faz **uma pergunta só**, para saber quem você é e o que
+   você faz: se o Claude já trabalhou com você nesta máquina, ele mostra um resumo do que já sabe e você só
+   confirma; se não, você escreve em poucas linhas ou manda um site, um perfil ou um currículo. O resto ele
+   preenche sozinho: seu sistema, suas ferramentas, seus projetos (com os comandos de teste e build) e o
+   `maestro.config.json`. Como ele fala com você, dá prazo e cota, decide e entrega já vem configurado.
+   O ideal é cada projeto ser uma subpasta da pasta-mãe (exemplo: `Maestro/meu-saas`), cada um com o
+   próprio git.
 
 > **Para valer em qualquer pasta** (projetos fora da pasta-mãe), acrescente esta linha ao seu
 > `~/.claude/CLAUDE.md`, trocando pelo caminho real: `@<caminho da pasta do Maestro>/CLAUDE.md`
@@ -97,7 +97,10 @@ dele, é esse o único arquivo a mudar.
 
 ## Como o Maestro trabalha com você
 
-- Você pede; na primeira resposta ele dá um nome à demanda e a **previsão de entrega** (dia e hora).
+- Você pede; na primeira resposta ele dá um nome à demanda, a **previsão de entrega** (dia e hora) e o
+  **consumo estimado da cota semanal** da sua assinatura, em %. Se um dos dois for estourar, ele avisa antes.
+- Toda resposta final vem em linguagem simples, na ordem situação atual, contexto e próximos passos, e
+  termina repetindo tudo que está pendente com você: você nunca precisa procurar nada mais para cima no chat.
 - O que cabe em poucas respostas ele resolve ali. O que é maior vira uma **fila** em
   `ferramentas/filas/<demanda>.json`, com uma etapa por entrega, e o vigia abre e acompanha cada uma.
 - Ele só te pergunta **decisão** (dinheiro, escopo, prioridade, texto que vai para cliente), sempre com o
@@ -144,6 +147,13 @@ dele, é esse o único arquivo a mudar.
   `maestro.config.json` e a pasta `estado/`.
 - O vigia só abre as pastas listadas nas suas filas e recusa caminho, nome ou valor fora do formato antes
   de montar qualquer comando.
+- **Compartilhar sem vazar.** Se você publica o seu Maestro num repositório (para a equipe, por exemplo),
+  publique sempre por `node ferramentas/publicar.mjs "mensagem"`. Ele roda a varredura de privacidade
+  (e-mail, telefone, caminho da sua pasta pessoal, IP, chave e token, mais os termos que você listar), os
+  testes, o commit e o push, e liga o gancho `.githooks/pre-push`, que varre de novo cada commit antes de
+  subir. Os seus termos privados (nomes de clientes, empresas, pessoas) e os arquivos de onde eles são
+  lidos ficam no `publicar.local.json`, que nunca vai para o git: o formato está no cabeçalho de
+  `ferramentas/varredura.mjs`.
 
 ## Problemas comuns
 

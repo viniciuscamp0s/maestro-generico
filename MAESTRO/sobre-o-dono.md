@@ -1,33 +1,25 @@
 # Sobre o dono
 
-> Preencha cada item com as suas palavras. O Maestro lê este arquivo em toda sessão, então escreva o
-> que muda o jeito dele trabalhar com você. Apague as linhas de instrução (as que começam com `>`)
-> depois de preencher. Nunca coloque senha, token ou dado de cartão aqui.
+> **Estado: em branco.** Quem preenche este arquivo é o Maestro, na primeira sessão, com uma pergunta só
+> (`maestro.md`, "Primeira sessão: conhecer o dono com uma pergunta só"). Ao preencher, ele apaga esta
+> linha. Como o Maestro se comunica, decide e entrega não se pergunta: já vem pronto em `como-penso.md`,
+> `como-falar-comigo.md`, `regua-de-qualidade.md` e `formato-das-entregas.md`. Nunca entra aqui senha,
+> token, documento pessoal, endereço ou dado de cartão.
 
 ## Quem é
 
 - **Nome (como quer ser chamado):**
-- **O que faz (cargo, papel):**
-- **Como prefere receber as respostas (curto e direto, detalhado, com tabela):**
-- **Fuso horário e horário em que costuma trabalhar:**
+- **O que faz:**
+- **Fonte:** <!-- de onde o Maestro tirou isto: histórico do Claude, texto do dono, site, perfil, currículo -->
 
 ## O negócio
 
 - **O que vende e para quem:**
-- **Como ganha dinheiro hoje (fontes de receita):**
-- **O que mais move a receita agora (a prioridade do trimestre):**
-- **Clientes, marcas ou públicos principais (nomes que o Maestro vai ouvir):**
+- **Empresas, marcas, clientes ou públicos principais (nomes que o Maestro vai ouvir):**
+- **O que mais move a receita agora:**
 
-## Como decide
+## Ambiente (preenchido sozinho)
 
-- **O que só ele decide (dinheiro, escopo, texto para cliente, outro):**
-- **Teto de gasto sem perguntar (tokens, API, ferramentas):**
-- **O que ele detesta receber:**
-- **O que ele considera uma entrega bem feita:**
-
-## Ferramentas que usa
-
-- **Assinaturas de IA (Claude, outras):**
-- **Onde trabalha (Orca, VS Code, os dois):**
-- **Sistema operacional (Windows, Mac):**
-- **Outros serviços do dia a dia (repositórios, hospedagem, planilhas, CRM):**
+- **Sistema operacional:**
+- **Ferramentas instaladas:** <!-- Orca, VS Code, Node, Git, GitHub CLI, Claude Code, com a versão -->
+- **Onde abre as sessões:** <!-- Orca ou VS Code (sai de as ferramentas acima) -->
