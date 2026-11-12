@@ -1,0 +1,1 @@
+Etapa textos da fila meu-saas-tela-de-planos (exemplo). Escreva os textos da pagina de planos (titulo, descricao de cada plano, perguntas frequentes) em docs/textos-planos.md. Nao publique nada. Estado: ao terminar grave <repositorio do Maestro>/estado/meu-saas-tela-de-planos/textos.json com estado fechada e prova. A mensagem final se entende sozinha.

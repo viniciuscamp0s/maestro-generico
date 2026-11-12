@@ -1,0 +1,27 @@
+{
+  "exemplo": true,
+  "fila": "meu-saas-tela-de-planos",
+  "titulo": "Meu SaaS · tela de planos",
+  "descricao": "Exemplo. Copie para um arquivo novo nesta pasta, tire o item exemplo e troque os valores. O vigia ignora arquivos com exemplo true.",
+  "etapas": [
+    {
+      "etapa": "construcao",
+      "projeto": "Meu SaaS",
+      "nome": "meu-saas-planos-construcao",
+      "titulo": "Planos: construcao da tela",
+      "modelo": "opus",
+      "esforco": "high",
+      "prompt": "exemplo-etapa.txt"
+    },
+    {
+      "etapa": "textos",
+      "projeto": "Meu SaaS",
+      "nome": "meu-saas-planos-textos",
+      "titulo": "Planos: textos da pagina",
+      "modelo": "sonnet",
+      "esforco": "medium",
+      "prompt": "exemplo-etapa-textos.txt",
+      "paralela": true
+    }
+  ]
+}

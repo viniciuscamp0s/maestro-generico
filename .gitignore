@@ -1,0 +1,19 @@
+# caminhos desta maquina e estado do vigia
+maestro.config.json
+estado/
+# segredos
+.env
+.env.*
+!.env.exemplo
+# filas e prompts de trabalho (os exemplos ficam)
+ferramentas/filas/*.json
+!ferramentas/filas/exemplo.json
+ferramentas/prompts/*
+!ferramentas/prompts/retomada.txt
+!ferramentas/prompts/exemplo-etapa.txt
+!ferramentas/prompts/exemplo-etapa-textos.txt
+# sistema
+node_modules/
+.DS_Store
+Thumbs.db
+*.log

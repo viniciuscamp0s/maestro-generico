@@ -1,0 +1,13 @@
+{
+  "name": "maestro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Maestro para Claude Code: organiza sessoes, etapas e modelos, e um vigia sem IA que retoma sessoes interrompidas.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 \"ferramentas/testes/*.test.mjs\"",
+    "vigia": "node ferramentas/vigia.mjs",
+    "vigia:check": "node ferramentas/vigia.mjs --check"
+  }
+}
