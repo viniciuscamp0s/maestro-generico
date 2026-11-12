@@ -21,7 +21,7 @@ export const PADRAO = Object.freeze({
   memoriaMinimaGB: 0.5,         // abaixo disso não abre nem retoma sessão
   maxCutucoes: 3,               // retomadas sem progresso antes de virar esperando-dono
   progressoRespostas: 15,       // respostas desde a última retomada que contam como progresso
-  modoPermissao: 'bypassPermissions',
+  modoPermissao: 'acceptEdits',      // bypassPermissions só por escolha consciente (README, Segurança)
   mcpEstrito: true,             // --strict-mcp-config: evita a tela de aprovação de MCP antes do prompt
   orca: { executavel: null, projetoPadrao: null },
   projetos: [],                 // [{ nome, pasta, orcaProjeto }]

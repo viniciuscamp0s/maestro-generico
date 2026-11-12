@@ -71,10 +71,14 @@ test('última fala ignora compactação e linhas de sistema', () => {
 
 test('comando do Claude no Windows (PowerShell) e no Mac (zsh)', () => {
   const etapa = { nome: 'app-tela', pasta: '/projetos/app', modelo: 'opus', esforco: 'high', env: { MODO: 'teste' } };
-  const win = comandoClaude(etapa, { arquivoPrompt: '/p/abrir.txt', so: 'win32' });
+  const win = comandoClaude(etapa, { arquivoPrompt: '/p/abrir.txt', so: 'win32', modoPermissao: 'bypassPermissions' });
   assert.match(win, /^Set-Location -LiteralPath '\/projetos\/app'; \$env:MODO='teste'; claude --name 'app-tela' --model opus --effort high --strict-mcp-config --permission-mode bypassPermissions \(Get-Content -Raw -Encoding UTF8 -LiteralPath '\/p\/abrir\.txt'\)\.Trim\(\)$/);
-  const mac = comandoClaude(etapa, { arquivoPrompt: '/p/abrir.txt', so: 'darwin', resume: '0f8fad5b-d9cb-469f-a165-7a8b6c7d2e0f' });
+  const mac = comandoClaude(etapa, { arquivoPrompt: '/p/abrir.txt', so: 'darwin', resume: '0f8fad5b-d9cb-469f-a165-7a8b6c7d2e0f', modoPermissao: 'bypassPermissions' });
   assert.equal(mac, `cd '/projetos/app' && export MODO='teste' && claude --resume 0f8fad5b-d9cb-469f-a165-7a8b6c7d2e0f --name 'app-tela' --model opus --effort high --strict-mcp-config --permission-mode bypassPermissions "$(cat '/p/abrir.txt')"`);
+});
+
+test('modo de permissão padrão pede licença para comando', () => {
+  assert.match(comandoClaude({ nome: 'app', pasta: '/projetos/app' }, { arquivoPrompt: '/p', so: 'darwin' }), /--permission-mode acceptEdits /);
 });
 
 test('comando recusa valor fora do formato (nada de injeção no shell)', () => {

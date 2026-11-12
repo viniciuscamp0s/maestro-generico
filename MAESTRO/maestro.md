@@ -72,16 +72,17 @@ aspas nem quebra de linha, porque a aba recebe o comando como se fosse digitado.
 Windows (a aba do Orca roda PowerShell):
 
 ```
-orca terminal create --worktree path:<projeto do Orca> --title "<título>" --command "Set-Location -LiteralPath '<pasta>'; claude --name '<nome>' --model <modelo> --effort <nível> --permission-mode bypassPermissions (Get-Content -Raw -LiteralPath '<arquivo do prompt>')"
+orca terminal create --worktree path:<projeto do Orca> --title "<título>" --command "Set-Location -LiteralPath '<pasta>'; claude --name '<nome>' --model <modelo> --effort <nível> --permission-mode acceptEdits (Get-Content -Raw -LiteralPath '<arquivo do prompt>')"
 ```
 
 Mac (a aba roda zsh):
 
 ```
-orca terminal create --worktree path:<projeto do Orca> --title "<título>" --command "cd '<pasta>' && claude --name '<nome>' --model <modelo> --effort <nível> --permission-mode bypassPermissions \"\$(cat '<arquivo do prompt>')\""
+orca terminal create --worktree path:<projeto do Orca> --title "<título>" --command "cd '<pasta>' && claude --name '<nome>' --model <modelo> --effort <nível> --permission-mode acceptEdits \"\$(cat '<arquivo do prompt>')\""
 ```
 
-Depois de abrir, conferir com `orca terminal read --terminal <handle>` que a sessão começou.
+Troque `acceptEdits` pelo `modoPermissao` do `maestro.config.json` quando o dono tiver ligado a autonomia total
+(README, seção Segurança). Depois de abrir, conferir com `orca terminal read --terminal <handle>` que a sessão começou.
 
 **No VS Code (sem Orca)** o Maestro pensa e organiza igual, mas não abre nem fecha abas: executa na
 própria sessão, usa subagentes para leitura em volume e recomenda `/model` quando o trabalho muda de

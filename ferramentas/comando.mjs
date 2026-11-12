@@ -30,7 +30,7 @@ export function lerPrompt(arquivo) {
 }
 
 // so: "win32" (PowerShell) ou qualquer outro (sh/zsh/bash).
-export function comandoClaude(etapa, { resume = null, arquivoPrompt, so = process.platform, modoPermissao = 'bypassPermissions', mcpEstrito = true } = {}) {
+export function comandoClaude(etapa, { resume = null, arquivoPrompt, so = process.platform, modoPermissao = 'acceptEdits', mcpEstrito = true } = {}) {
   if (!arquivoPrompt) throw new Error('falta o arquivo do prompt');
   const win = so === 'win32';
   const claude = ['claude'];

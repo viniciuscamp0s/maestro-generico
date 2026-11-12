@@ -126,11 +126,20 @@ dele, é esse o único arquivo a mudar.
 
 ## Segurança
 
-- **Modo de permissão.** As sessões abertas pelo vigia rodam com `"modoPermissao": "bypassPermissions"`
-  (não pedem licença para cada comando, para não pararem de madrugada). Isso exige trava técnica no que é
-  irreversível: nunca deixe credencial de produção com poder de apagar dado ao alcance da sessão sem uma
-  proteção no próprio sistema. Se preferir que as sessões peçam licença, troque para `"acceptEdits"` ou
-  `"default"` no `maestro.config.json` (elas vão parar esperando você).
+- **Modo de permissão.** O padrão é `"modoPermissao": "acceptEdits"`: as sessões abertas pelo vigia
+  editam arquivos sem perguntar, mas **pedem licença para rodar comando**. É o modo seguro para começar,
+  com um custo: a sessão para esperando você quando precisa rodar um teste ou um build.
+- **Autonomia total (`"bypassPermissions"`) é escolha sua, consciente.** Nesse modo a sessão não pede
+  licença para nada e segue de madrugada sem você. Só ligue se as três coisas forem verdade:
+  1. nenhuma credencial com poder de apagar ou cobrar (banco de produção, painel de pagamento, conta de
+     anúncio) está ao alcance da sessão sem uma trava no próprio sistema;
+  2. tudo que importa está no git e com cópia fora da máquina;
+  3. de preferência, as sessões rodam num ambiente isolado (máquina virtual, contêiner ou usuário separado
+     do sistema operacional).
+  Para ligar: troque o valor no `maestro.config.json`. Para voltar: troque de novo.
+- **Tela "confia nesta pasta?".** Com Orca, o vigia aceita essa tela sozinho, mas só nas pastas que você
+  mesmo colocou nas filas. Nunca coloque numa fila uma pasta de origem desconhecida (código baixado da
+  internet, por exemplo).
 - **Segredos** moram num `.env` fora do git e nunca vão para o chat. O `.gitignore` já recusa `.env`,
   `maestro.config.json` e a pasta `estado/`.
 - O vigia só abre as pastas listadas nas suas filas e recusa caminho, nome ou valor fora do formato antes

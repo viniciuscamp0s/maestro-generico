@@ -9,7 +9,7 @@
   "memoriaMinimaGB": 0.5,
   "maxCutucoes": 3,
   "progressoRespostas": 15,
-  "modoPermissao": "bypassPermissions",
+  "modoPermissao": "acceptEdits",
   "mcpEstrito": true,
   "orca": {
     "executavel": null,
