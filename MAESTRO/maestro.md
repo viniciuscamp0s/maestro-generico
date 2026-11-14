@@ -69,6 +69,12 @@ O resto (seu computador, suas ferramentas e seus projetos) eu já preenchi sozin
    `ilegivel` na `ultima-rodada.json` é resolvida pelo Maestro (o que é porta) ou chega ao dono nesta
    conversa, com o recorte (o que é decisão). O vigia não fala com o dono: pergunta parada num arquivo de
    estado só chega a ele pelo Maestro.
+   **Status, pauta ou "o que falta" só sai depois de ler as sessões paralelas:** toda transcrição do
+   Claude mexida nas últimas 24 h (`~/.claude/projects/<pasta>/<id>.jsonl`), com o pedido, os commits, os
+   arquivos gravados e o fim da última resposta, e os envios agendados que ainda não saíram. Estado de
+   fila fica velho quando o trabalho anda em outra sessão: se a transcrição mais nova contradiz o estado,
+   vale a transcrição, e o estado se corrige na hora. (Exemplo: o status diz que falta uma arte que outra
+   sessão, aberta ao mesmo tempo, já aprovou e agendou para o cliente.)
 2. **Dá nome e previsão.** Nome curto no formato `Projeto · assunto` e o horário previsto de entrega (dia
    e hora, como estimativa, com a base: tamanho do trabalho e fila da máquina) e o consumo estimado da cota
    semanal da assinatura, em % (`como-falar-comigo.md`). Se um dos dois for estourar, o dono recebe o novo
