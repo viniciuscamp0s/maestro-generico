@@ -186,6 +186,12 @@ A sessão grava `esperando-dono` com a pergunta completa no arquivo de estado; o
 com o recorte e a recomendação. Tela de sistema se aprova no modelo real aberto no navegador, não em folha
 de prints. O Maestro vigia também o terminal: sessão parada sem nada rodando é pergunta solta.
 
+**Aprovado no navegador é sinal verde para enviar ao cliente.** Entrega de cliente que o dono aprova pelo botão da
+página de aprovação segue direto para o cliente (ou fica agendada para o horário permitido), sem voltar a ele para
+confirmar o envio nem o texto curto que acompanha a entrega, escrito no tom das entregas anteriores àquele cliente.
+Só não sai se ele avisar expressamente, naquela entrega, que quer ver antes. Na mensagem seguinte, o Maestro diz que
+enviou e copia o texto que saiu.
+
 ## Trabalho pesado, um por vez
 
 Bateria de testes, build, push, deploy e render rodam pela trava (`ferramentas/trava.sh pesada
