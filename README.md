@@ -28,6 +28,7 @@ parou.
 | `ferramentas/publicar.mjs`, `ferramentas/varredura.mjs` | Publicar no GitHub sem vazar dado privado (varredura sem IA + gancho de push) |
 | `ferramentas/filas/`, `ferramentas/prompts/` | Filas de trabalho e prompts (com exemplos) |
 | `ferramentas/instalar/` | Instaladores do vigia: Windows (Agendador de Tarefas) e Mac (launchd) |
+| `.claude/skills/route/` | Skill `/route` (opcional): o Claude planeja e revisa, o GPT (Codex) escreve o código |
 
 ## Requisitos
 
@@ -78,6 +79,23 @@ parou.
 
 > **Para valer em qualquer pasta** (projetos fora da pasta-mãe), acrescente esta linha ao seu
 > `~/.claude/CLAUDE.md`, trocando pelo caminho real: `@<caminho da pasta do Maestro>/CLAUDE.md`
+
+## Skill /route: o GPT como colaborador do Claude (opcional)
+
+Com ela, o Claude escreve um plano curto, o Codex (o GPT, na sua assinatura do ChatGPT) escreve o código e
+o Claude revisa como adversário até aprovar. O código, que é a parte mais longa, sai da assinatura do
+ChatGPT, e a do Claude fica com o plano e a revisão.
+
+1. Instale o Codex CLI:
+   - Mac ou Linux: `curl -fsSL https://chatgpt.com/codex/install.sh | sh`
+   - Windows ou qualquer sistema com Node: `npm install -g @openai/codex`
+2. Entre com a sua conta do ChatGPT: `codex login`. Confira com `codex --version`.
+3. Pronto. A skill já vem neste repositório (`.claude/skills/route/`) e vale em toda sessão aberta na pasta
+   do Maestro. Para usar em qualquer pasta da máquina, copie a pasta para `~/.claude/skills/route/`.
+4. Para usar, numa sessão do Claude Code, dentro de um projeto com git: `/route "<a tarefa, bem delimitada>"`.
+
+Serve para implementação com escopo claro (uma validação, uma rota, um conjunto de testes). Discussão de
+arquitetura e tarefa vaga ficam com o Claude.
 
 ## O que funciona no Orca e no VS Code
 
