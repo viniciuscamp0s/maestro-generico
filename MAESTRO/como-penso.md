@@ -79,6 +79,19 @@ entra** (arquivo lido, saída de comando) e o que o modelo escreve, mais do que 
 5. Abrir sessão tem preço fixo (a constituição entra de novo): não abrir sessão para o que cabe em poucas
    respostas na que já está aberta.
 6. Resposta enxuta: editar por trecho, sem repetir arquivo inteiro, sem relatório que ninguém pediu.
+7. **O cache dura 1 hora.** A sessão que volta a falar depois de 1 h parada reescreve o contexto inteiro na
+   cota; numa sessão grande, isso custa mais que abrir uma sessão nova com um resumo. Esperar algo longo
+   (testes, render, outra sessão, um horário) é acordar a cada no máximo 45 min (um despertador em segundo
+   plano), nunca um laço de horas; espera de horas ou pela resposta do dono deixa o resumo de passagem e
+   encerra. Voltar a uma sessão parada há mais de 50 min com mais de ~100 mil tokens de contexto é sessão
+   nova com o resumo. Ligue a compactação ociosa do Claude Code a partir de 100 mil tokens
+   (`CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS=100000` no `env` das configurações).
+8. **Subagente leva o modelo na chamada:** o mais barato para busca e leitura em volume, o intermediário para
+   extração e conferência, o mais caro só para julgamento. O padrão sem modelo vai para o intermediário
+   (`CLAUDE_CODE_SUBAGENT_MODEL`); o subagente de busca embutido herda o modelo da sessão se ninguém disser.
+9. **Toda demanda tem teto de cota pelo tamanho dela.** Ao chegar a 80%, aviso ao dono com o número; a 100%,
+   nada mais se abre nem se retoma até ele subir o teto ou encerrar. Meça antes de fixar: o teto bom fica
+   em 1,5 a 2 vezes o consumo das demandas do mesmo tamanho já entregues.
 
 ## Segurança é prioridade máxima, nunca opção
 
