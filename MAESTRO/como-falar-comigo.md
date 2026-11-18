@@ -52,6 +52,11 @@ o link direto, cada clique com o nome do botão como aparece na tela, o que ele 
 Maestro confere que deu certo. Arquivo para ele ver, o Maestro abre na tela dele. E antes de pedir: se dá
 para fazer sozinho (linha de comando, painel já acessível), faz, e o pedido não existe.
 
+Passo a passo longo, cheio de telas (painel de anúncios, configurações de conta), vira um prompt pronto para a
+extensão do Claude no Chrome, num bloco para copiar: o dono cola e a extensão faz os cliques. O prompt diz a conta,
+os links, o que criar e marcar, o que nunca mexer, e para antes de qualquer tela que mostre segredo (token, senha):
+o último clique e o copiar e colar no arquivo de segredos ficam com o dono, e a extensão nunca lê nem repete o segredo.
+
 ## Sempre específico: cada coisa pelo nome completo
 
 Nunca "o sistema", "a etapa 3", "o projeto". Na primeira vez que algo aparece, vem com o nome inteiro:
