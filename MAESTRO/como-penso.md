@@ -222,3 +222,16 @@ grava, na hora; quem garante que nada interno sai é uma trava técnica, sem IA:
 > As regras específicas que o dono der ("sempre X", "nunca X") entram aqui, uma seção por regra, com a
 > data, as palavras dele e como aplicar. Se a regra for longa ou de um ofício, ela mora no arquivo do
 > ofício e aqui fica só o ponteiro.
+
+## Não contratar antes da hora, mas sempre saber como escala e o que fazer se a peça morrer
+
+Serviço ou assinatura só se contrata quando a entrega precisa: plano pago de banco de dados, de API ou de
+ferramenta fica de fora até o volume pedir. Mas toda peça de que um produto depende tem, desde o desenho, duas
+respostas escritas: como ela aguenta a escala, e o que acontece se ela deixar de ser viável. Não precisa ter o plano B
+construído; precisa saber o suficiente para decidir qual risco correr.
+
+- **Risco calculado** é o que o dono decidiu correr sabendo do tamanho (ex.: depender de uma API não oficial que um dia
+  pode ser bloqueada). Fica registrado numa tabela de riscos, com o sinal a vigiar (notícia, mudança de regra do
+  fornecedor), para nunca ser pego de surpresa.
+- **Peça que com certeza quebra na escala** (ex.: uma cota gratuita com limite diário) não é risco calculado: o desenho
+  já nasce com a saída escalável (ex.: passar ao pago por uso, com teto de gasto), ligada só quando o volume pedir.
