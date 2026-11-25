@@ -48,7 +48,7 @@ parou.
 3. **Clone o repositório nessa pasta.** Abra o terminal (no Windows, o Git Bash; no Mac, o Terminal) e rode:
 
    ```
-   git clone https://github.com/<dono-do-repositorio>/maestro-generico.git Maestro
+   git clone https://github.com/<dono-do-repositorio>/webster-maestro-de-agentes.git Maestro
    cd Maestro
    ```
 

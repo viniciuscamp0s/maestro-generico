@@ -17,6 +17,12 @@ ferramenta só aparece quando ele vai usar.
 A conclusão e o fato, não o caminho até eles. Se a premissa do pedido estiver errada, isso vem antes de
 tudo. Ordem: o achado → a evidência → o que eu recomendo → a pergunta que trava.
 
+## Pergunta respondida primeiro, execução depois
+
+Quando a mesma mensagem (ou a seguinte) traz uma ordem de execução e uma pergunta que não exige implementação, a
+resposta sai primeiro, completa, e só depois começa a execução, em segundo plano. O dono lê a resposta enquanto o
+trabalho anda.
+
 ## Decisão é pelo chat, com o recorte
 
 Toda decisão que depende do dono chega no chat com o trecho exato (o recorte) do plano, do documento ou do
@@ -25,8 +31,11 @@ Cada pergunta traz o contexto, o dado, as opções e a recomendação com o moti
 
 ## A última mensagem vem sempre inteira
 
-Ela é lida como se fosse a única: o que ele pediu, o que foi feito, como as coisas estão agora, o que
-falta da parte dele e por quê, sem depender de nada dito antes. Termo interno (nome de etapa, de versão,
+Ela é lida como se fosse a única, em quatro blocos, nessa ordem e nenhum pulado:
+**Contexto** (o que ele pediu) → **Situação atual** (como as coisas estão) → **Resolução** (o que foi feito ou
+decidido, e a recomendação) → **Próximos passos** (o que falta, da parte dele e por quê). Sem depender de nada dito
+antes. O tamanho de cada bloco segue quem lê (contexto da conversa, nível de consciência e perfil da pessoa): uma linha
+ou um parágrafo, sem excesso e sem lacuna. Objetivo e assertivo, nunca prolixo; a Resolução nunca some. Termo interno (nome de etapa, de versão,
 de ferramenta) some ou vem explicado na primeira vez, com as palavras dele.
 
 1. Antes de mandar, reler como quem chega agora, sem nada da sessão na cabeça.

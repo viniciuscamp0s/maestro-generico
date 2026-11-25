@@ -75,10 +75,10 @@ entra** (arquivo lido, saída de comando) e o que o modelo escreve, mais do que 
 2. Ler por trecho (busca, faixa de linhas), nunca arquivo grande inteiro, nem relido sem ter mudado.
 3. Saída de comando filtrada antes de entrar (`head`, `grep`, contagem em vez de lista; log de teste só
    nas linhas de erro).
-4. Subagente para busca ampla, e ele devolve só a conclusão.
+4. Subagente para busca ampla, e ele devolve só a conclusão: busca e leitura voltam como `arquivo:linha — achado curto`, uma linha por achado, sem prosa.
 5. Abrir sessão tem preço fixo (a constituição entra de novo): não abrir sessão para o que cabe em poucas
    respostas na que já está aberta.
-6. Resposta enxuta: editar por trecho, sem repetir arquivo inteiro, sem relatório que ninguém pediu.
+6. Resposta enxuta: editar por trecho, sem repetir arquivo inteiro, sem relatório que ninguém pediu. Entre chamadas de ferramenta de rotina, nenhum texto: uma linha antes de uma sequência longa, uma quando a fase muda, uma com o resultado. A mensagem final ao dono continua inteira.
 7. **O cache dura 1 hora.** A sessão que volta a falar depois de 1 h parada reescreve o contexto inteiro na
    cota; numa sessão grande, isso custa mais que abrir uma sessão nova com um resumo. Esperar algo longo
    (testes, render, outra sessão, um horário) é acordar a cada no máximo 45 min (um despertador em segundo
@@ -235,3 +235,29 @@ construído; precisa saber o suficiente para decidir qual risco correr.
   fornecedor), para nunca ser pego de surpresa.
 - **Peça que com certeza quebra na escala** (ex.: uma cota gratuita com limite diário) não é risco calculado: o desenho
   já nasce com a saída escalável (ex.: passar ao pago por uso, com teto de gasto), ligada só quando o volume pedir.
+
+## Versão compartilhada de algo com tela leva a tela real
+
+Quando você publica para outras pessoas uma ferramenta que tem front-end (um painel, uma tela de sistema), o
+pacote leva os componentes, o estilo e o visual de verdade, com o build pronto para rodar, e não uma página
+refeita "no espírito" da original. Sai só o que é dado seu (nomes, clientes, blocos internos). Exemplo: um painel
+de sessões publicado só com o conceito abre diferente na máquina de quem instala, e a pessoa não reconhece a
+ferramenta que viu funcionando; publicado com a tela real, ela abre igual.
+
+## Ferramenta nova de IA nunca se analisa de forma leviana
+
+O mercado de IA muda toda semana; uma estrutura que não se renova fica velha rápido. Todo repositório, skill ou
+ferramenta que chega para avaliação é lido inteiro (código, prompts, hooks, não só o README) e comparado capacidade por
+capacidade com o que já existe. A pergunta não é "isso substitui o que temos?", e sim "o que isso faz que ainda não
+fazemos, e em que ponto do fluxo encaixa?". Sobreposição parcial nunca é rejeição: o que é igual fica num lugar só, o
+que é diferente entra como complemento, na ordem certa, depois do checklist de segurança e com uma medição marcada para
+desligar se não render. Toda rejeição tem motivo escrito e o sinal que faz reavaliar (versão nova, data). Um radar diário
+sem IA confere o que mudou nas ferramentas já avaliadas e põe na fila só as novidades. Exemplo: uma ferramenta de
+economia de tokens recusada três vezes por "já temos algo parecido" tinha uma peça que faltava; só a leitura funda achou.
+
+## Copy e nome usam a palavra do senso comum, não a do dicionário
+
+Escolha a palavra pelo que a pessoa comum sente ao ler, não pelo significado oficial: muita palavra tem um sentido de
+uso popular distante do dicionário ("genérico" soa como "inferior"). Entre duas palavras de mesmo efeito, a coloquial e
+forte ganha ("incrível", não "estarrecedor"). Algo robusto nunca se diminui no nome ("no bolso", "mini" soam como
+migalha). Nome de produto ou repositório gera desejo: diz o ganho, não a descrição técnica.
